@@ -52,19 +52,19 @@ ylabel('phase [rad]');
 %% spectrum semilog plot 1.2
 figure
 subplot(2,1,1)
-hold on;
-grid on;
-semilogx(freq,abs(Y),'b'); %semilogx doesn't seem to be working
-xlim([-5,4*f0+5]);
+semilogx(freq,abs(Y),'b');
+hold on
+grid on
+xlim([0,5*10^2]);
 xlabel('frequency [Hz]');
 ylabel('amplitude');
 semilogx(0,1,'ro');
 legend('signal','first peak')
 subplot(2,1,2)
+semilogx(freq,angle(Y),'b');
 hold on;
 grid on;
-semilogx(freq,angle(Y),'b');
-xlim([-5,4*f0+5]);
+xlim([0,5*10^2]);
 xlabel('frequency [Hz]');
 ylabel('phase [rad]');
 
