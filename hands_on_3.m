@@ -180,8 +180,22 @@ plot(t500,s500,'ro--');
 hold on
 plot(t500,fnew500(1:10001),'go--');
 grid on
-xlabel('Frequency [Hz]');
+xlabel('Time [s]');
 ylabel('Amplitude');
 legend('Unfiltered','Filtered');
 xlim([0,0.005]);
 ylim([-1.1,1.1]);
+
+%% The analytical case check (re-use of the filter code)
+[t50,s50]=generate_sinusoid(1,10,0,50,0.5); %The duration of the sin is chosen to be 0.5 s.
+rs=ones(1,5); %the impulse response of the running sum filter
+f50=filter(rs,1,s50); %filtered signal
+
+figure
+plot(t50,s50,'ro--');
+hold on
+plot(t50,f50,'go--');
+grid on
+xlabel('Time [s]');
+ylabel('Amplitude');
+legend('Unfiltered','Filtered');
