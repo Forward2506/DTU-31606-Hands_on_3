@@ -12,7 +12,7 @@ Y = Y/(length(Y));
 % in the positive frequencies, you need to scale by <length(Y)/2>.
 % frequency vector
 delta_f = fs/length(Y);
-freq = -fs/2:delta_f:fs/2-delta_f;
+freq = -fs/2+delta_f:delta_f:fs/2;
 % NOTE: The first element that comes out of the FFT is the DC offset
 % (i.e., frequency 0). Each subsequent
 % bin is spaced by the frequency resolution <delta_f> which you can
