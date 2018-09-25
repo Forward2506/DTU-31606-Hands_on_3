@@ -9,20 +9,20 @@ fs=44100; % sampling frequency
 figure
 hold on;
 grid on;
-plot(freq500,abs(Y500),'b');
-plot(freq499,abs(Y499),'r');
+plot(freq500,abs(Y500),'bo--');
+plot(freq499,abs(Y499),'ro--');
 xlim([480,520]);
 xlabel('Frequency [Hz]');
 ylabel('Amplitude');
-legend('500 Hz signal','400 Hz signal');
+legend('500 Hz signal','499 Hz signal');
 %% setup 1.2
-clear all; clc; %% clear everything
+clear all; clc; % clear everything
 fs=10000; % sampling frequency
 f0=25;
 T=4;
-s=0; %%placeholder
+s=0; % placeholder
 for k = 0:4
-    [t,c]=generate_sinusoid(1,k*f0,pi/2+k*pi/3,fs,4); % the cosin inside the sum
+    [t,c]=generate_sinusoid(1,k*f0,pi/2+k*pi/3,fs,4); % the cosinus inside the sum
     s=s+c; %final signal
 end 
 %% signal plot 1.2
@@ -40,43 +40,34 @@ figure
 subplot(2,1,1)
 hold on;
 grid on;
-plot(freq,abs(Y),'b');
-xlim([-5,4*f0+5]);
+plot(freq,abs(Y),'bo--');
+xlim([0,4*f0+5]);
 xlabel('Frequency [Hz]');
 ylabel('Amplitude');
 subplot(2,1,2)
 hold on;
 grid on;
-plot(freq,angle(Y),'b');
-xlim([-5,4*f0+5]);
+plot(freq,angle(Y),'bo--');
+xlim([0,4*f0+5]);
 xlabel('Frequency [Hz]');
 ylabel('Phase [rad]');
 
 %% spectrum semilog plot 1.2
 figure
-subplot(2,1,1)
-semilogx(freq,abs(Y),'b');
+semilogx(freq,20*log10(abs(Y)),'bo--');
 hold on
 grid on
 xlim([0,5*10^2]);
 xlabel('Frequency [Hz]');
-ylabel('Amplitude');
-semilogx(0.125,1,'ro'); %first peak
-legend('Signal','First peak')
-subplot(2,1,2)
-semilogx(freq,angle(Y),'b');
-hold on;
-grid on;
-xlim([0,5*10^2]);
-xlabel('Frequency [Hz]');
-ylabel('Phase [rad]');
-
+ylabel('Amplitude [dB]');
+semilogx(0.125,0,'ro'); %first peak at 0.125 Hz because of the spectral density
+legend('Signal','First peak','Location','southwest')
 %% Re and Im parts 1.2
 figure
 subplot(2,1,1)
 hold on;
 grid on;
-plot(freq,imag(Y),'r');
+plot(freq,imag(Y),'ro--');
 xlim([-5,4*f0+5]);
 yticks([-0.5,-0.25,0,0.25,0.5])
 xlabel('Frequency [Hz]');
@@ -84,22 +75,20 @@ ylabel('Imaginary part');
 subplot(2,1,2)
 hold on;
 grid on;
-plot(freq,real(Y),'b');
+plot(freq,real(Y),'bo--');
 xlim([-5,4*f0+5]);
 yticks([-0.5,-0.25,0,0.25,0.5,0.75,1])
 xlabel('Frequency [Hz]');
 ylabel('Real part');
 
 %% wav file 1.2
-audiowrite('signal_1-2.wav',s,fs,'BitsPerSample',16);
 %16 bit depth results in clipping of the signal
-%a fix could be
-%audiowrite('signal_1-2.wav',s./5,fs,'BitsPerSample',16);
+%a fix could be normalising the amplitude
+audiowrite('signal_1-2.wav',s./5,fs,'BitsPerSample',16);
 %Or you could simply up the bit depth
 %% comparison between original signal and wav file 1.2
 s_read=audioread('signal_1-2.wav');
-s_read=s_read';
-%s_read=5.*s_read'; %part of the clipping fix
+s_read=5.*s_read'; %part of the clipping fix
 figure
 plot(t,s,'bo')
 hold on
