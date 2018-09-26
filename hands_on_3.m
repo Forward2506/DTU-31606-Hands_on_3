@@ -166,6 +166,22 @@ ylabel('Amplitude');
 legend('Unfiltered','Filtered');
 xlim([0,0.01]);
 ylim([-1.1,1.1]);
+%% Amplitude test
+figure
+plot(t500,f500(1:10001),'o--');
+hold on
+plot(t2200,f2200(1:10001),'o--');
+plot(t4050,f4050(1:10001),'o--');
+grid on
+xlabel('Frequency [Hz]');
+ylabel('Amplitude');
+legend('500 Hz','2200 Hz','4050 Hz');
+xlim([0,0.01]);
+
+max500=max(abs(f500(21:10001))); %max value of the 500 hz filtered sine, after the first period, and before the last
+max2200=max(abs(f2200(21:10001))); %max value of the 2200 hz filtered sine, after the first period, and before the last
+max4050=max(abs(f4050(21:10001))); %max value of the 4050 hz filtered sine, after the first period, and before the last
+
 %% Filtering by filter-command
 h=1/21*ones(1,21); % non-zeropadded impulse respons for the filter
 fnew500=filter(h,1,s500); %the new filtered signal
@@ -181,7 +197,7 @@ xlim([0,0.005]);
 ylim([-1.1,1.1]);
 
 %% The analytical case check (re-use of the filter code)
-[t50,s50]=generate_sinusoid(1,10,0,50,0.5); %The duration of the sin is chosen to be 0.5 s.
+[t50,s50]=generate_sinusoid(1,10,0,50,10); %The duration of the sin is chosen to be 10 s.
 rs=ones(1,5); %the impulse response of the running sum filter
 f50=filter(rs,1,s50); %filtered signal
 
@@ -190,6 +206,7 @@ plot(t50,s50,'ro--');
 hold on
 plot(t50,f50,'go--');
 grid on
+xlim([0,0.5])
 xlabel('Time [s]');
 ylabel('Amplitude');
 legend('Unfiltered','Filtered');
