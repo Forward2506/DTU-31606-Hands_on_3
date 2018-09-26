@@ -22,12 +22,12 @@ f0=25;
 T=4;
 s=0; % placeholder
 for k = 0:4
-    [t,c]=generate_sinusoid(1,k*f0,pi/2+k*pi/3,fs,4); % the cosinus inside the sum
+    [t,c]=generate_sinusoid(1,2^k*f0,pi/2+k*pi/3,fs,4); % the cosinus inside the sum
     s=s+c; %final signal
 end 
 %% signal plot 1.2
 figure
-plot(t,s,'bo')
+plot(t,s,'bo--')
 hold on
 grid on
 xlim([0.8,0.9])
@@ -41,27 +41,29 @@ subplot(2,1,1)
 hold on;
 grid on;
 plot(freq,abs(Y),'bo--');
-xlim([0,4*f0+5]);
+xlim([0,8*f0+20]);
 xlabel('Frequency [Hz]');
 ylabel('Amplitude');
 subplot(2,1,2)
 hold on;
 grid on;
 plot(freq,angle(Y),'bo--');
-xlim([0,4*f0+5]);
+xlim([0,8*f0+20]);
 xlabel('Frequency [Hz]');
 ylabel('Phase [rad]');
+yticks([-pi,-2/3*pi,-pi/3,0,pi/3,2/3*pi,pi]);
+yticklabels({'-\pi','','','0','','','\pi'});
 
 %% spectrum semilog plot 1.2
 figure
 semilogx(freq,20*log10(abs(Y)),'bo--');
 hold on
 grid on
-xlim([0,5*10^2]);
+xlim([0,10^3]);
 xlabel('Frequency [Hz]');
 ylabel('Amplitude [dB]');
-semilogx(0.125,0,'ro'); %first peak at 0.125 Hz because of the spectral density
-legend('Signal','First peak','Location','southwest')
+semilogx(25.12,-6.021,'ro'); %first peak at 0.125 Hz because of the spectral density
+legend('Signal','First peak','Location','northwest')
 %% Re and Im parts 1.2
 figure
 subplot(2,1,1)
