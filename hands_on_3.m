@@ -27,7 +27,7 @@ for k = 0:4
 end 
 %% signal plot 1.2
 figure
-plot(t,s,'bo--')
+plot(t,s,'bo')
 hold on
 grid on
 xlim([0.8,0.9])
@@ -69,17 +69,19 @@ figure
 subplot(2,1,1)
 hold on;
 grid on;
-plot(freq,imag(Y),'ro--');
-xlim([-5,4*f0+5]);
+plot(freq,imag(Y),'ro--');  
+xlim([0,8*f0+20]);
 yticks([-0.5,-0.25,0,0.25,0.5])
 xlabel('Frequency [Hz]');
 ylabel('Imaginary part');
+ylim([-0.6,0.6]);
 subplot(2,1,2)
 hold on;
 grid on;
 plot(freq,real(Y),'bo--');
-xlim([-5,4*f0+5]);
-yticks([-0.5,-0.25,0,0.25,0.5,0.75,1])
+xlim([0,8*f0+20]);
+yticks([-0.5,-0.25,0,0.25,0.5])
+ylim([-0.6,0.6]);
 xlabel('Frequency [Hz]');
 ylabel('Real part');
 
@@ -99,7 +101,6 @@ grid on
 xlim([0.85,0.925])
 xlabel('Time [s]')
 ylabel('Amplitude')
-legend('Original signal','Loaded signal')
 
 
 
