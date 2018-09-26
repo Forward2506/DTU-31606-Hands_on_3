@@ -93,6 +93,8 @@ audiowrite('signal_1-2.wav',s./5,fs,'BitsPerSample',16);
 %% comparison between original signal and wav file 1.2
 s_read=audioread('signal_1-2.wav');
 s_read=5.*s_read'; %part of the clipping fix
+d=abs(s_read-s); %difference between original an loaded signal
+maxd=max(d); %maximum difference 
 figure
 plot(t,s,'bo')
 hold on
