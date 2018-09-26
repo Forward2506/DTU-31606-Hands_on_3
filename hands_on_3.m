@@ -41,14 +41,14 @@ subplot(2,1,1)
 hold on;
 grid on;
 plot(freq,abs(Y),'bo--');
-xlim([0,8*f0+20]);
+xlim([0,16*f0+20]);
 xlabel('Frequency [Hz]');
 ylabel('Amplitude');
 subplot(2,1,2)
 hold on;
 grid on;
 plot(freq,angle(Y),'bo--');
-xlim([0,8*f0+20]);
+xlim([0,16*f0+20]);
 xlabel('Frequency [Hz]');
 ylabel('Phase [rad]');
 yticks([-pi,-2/3*pi,-pi/3,0,pi/3,2/3*pi,pi]);
@@ -70,7 +70,7 @@ subplot(2,1,1)
 hold on;
 grid on;
 plot(freq,imag(Y),'ro--');  
-xlim([0,8*f0+20]);
+xlim([0,16*f0+20]);
 yticks([-0.5,-0.25,0,0.25,0.5])
 xlabel('Frequency [Hz]');
 ylabel('Imaginary part');
@@ -79,7 +79,7 @@ subplot(2,1,2)
 hold on;
 grid on;
 plot(freq,real(Y),'bo--');
-xlim([0,8*f0+20]);
+xlim([0,16*f0+20]);
 yticks([-0.5,-0.25,0,0.25,0.5])
 ylim([-0.6,0.6]);
 xlabel('Frequency [Hz]');
