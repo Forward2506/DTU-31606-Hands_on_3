@@ -172,9 +172,9 @@ saveFig(8,'fig/fig8.eps',150)
 %% Filtering the signals with the impulse response 2200 Hz
 f2200=conv(ir,s2200); % filtered 2200 Hz signal
 figure(9) % fig9
-stem(t2200,s2200);
+plot(t2200,s2200,'ro--');
 hold on
-stem(t2200,f2200(1:10000));
+plot(t2200,f2200(1:10000),'bo--');
 grid on
 xlabel('Frequency [Hz]');
 ylabel('Amplitude');
@@ -186,9 +186,9 @@ saveFig(9,'fig/fig9.eps',150)
 %% Filtering the signals with the impulse response 4050 Hz
 f4050=conv(ir,s4050); % filtered 4050 Hz signal
 figure(10) % fig10
-stem(t4050,s4050);
+plot(t4050,s4050,'ro--');
 hold on
-stem(t4050,f4050(1:10000));
+plot(t4050,f4050(1:10000),'bo--');
 grid on
 xlabel('Frequency [Hz]');
 ylabel('Amplitude');
@@ -199,10 +199,10 @@ ylim([-1.1,1.1]);
 saveFig(10,'fig/fig10.eps',150)
 %% Amplitude test
 figure(11) % fig11
-plot(t500,f500(1:10000));
+plot(t500,f500(1:10000),'o--');
 hold on
-plot(t2200,f2200(1:10000));
-plot(t4050,f4050(1:10000));
+plot(t2200,f2200(1:10000),'o--');
+plot(t4050,f4050(1:10000),'o--');
 grid on
 xlabel('Frequency [Hz]');
 ylabel('Amplitude');
@@ -219,9 +219,9 @@ max4050=max(abs(f4050(21:10000))); %max value of the 4050 hz filtered sine, afte
 h=1/21*ones(1,21); % non-zeropadded impulse respons for the filter
 fnew500=filter(h,1,s500); %the new filtered signal
 figure(12)
-stem(t500,s500);
+plot(t500,s500,'o-');
 hold on
-stem(t500,fnew500(1:10000));
+plot(t500,fnew500(1:10000),'o-');
 grid on
 xlabel('Time [s]');
 ylabel('Amplitude');
@@ -237,9 +237,9 @@ rs=ones(1,5); %the impulse response of the running sum filter
 f50=filter(rs,1,s50); %filtered signal
 
 figure(13)
-plot(t50,s50,'o-');
+stem(t50,s50,'o-');
 hold on
-plot(t50,f50,'o-');
+stem(t50,f50,'o-');
 grid on
 xlim([0,0.5])
 xlabel('Time [s]');
