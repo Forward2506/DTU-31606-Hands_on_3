@@ -139,7 +139,7 @@ f500=conv(ir,s500); % filtered 500 Hz signal
 figure
 plot(t500,s500,'ro--');
 hold on
-plot(t500,f500(1:10001),'bo--');
+plot(t500,f500(1:10000),'bo--');
 grid on
 xlabel('Time [s]');
 ylabel('Amplitude');
@@ -151,7 +151,7 @@ f2200=conv(ir,s2200); % filtered 2200 Hz signal
 figure
 plot(t2200,s2200,'ro--');
 hold on
-plot(t2200,f2200(1:10001),'bo--');
+plot(t2200,f2200(1:10000),'bo--');
 grid on
 xlabel('Frequency [Hz]');
 ylabel('Amplitude');
@@ -163,7 +163,7 @@ f4050=conv(ir,s4050); % filtered 4050 Hz signal
 figure
 plot(t4050,s4050,'ro--');
 hold on
-plot(t4050,f4050(1:10001),'bo--');
+plot(t4050,f4050(1:10000),'bo--');
 grid on
 xlabel('Frequency [Hz]');
 ylabel('Amplitude');
@@ -172,19 +172,19 @@ xlim([0,0.01]);
 ylim([-1.1,1.1]);
 %% Amplitude test
 figure
-plot(t500,f500(1:10001),'o--');
+plot(t500,f500(1:10000),'o--');
 hold on
-plot(t2200,f2200(1:10001),'o--');
-plot(t4050,f4050(1:10001),'o--');
+plot(t2200,f2200(1:10000),'o--');
+plot(t4050,f4050(1:10000),'o--');
 grid on
 xlabel('Frequency [Hz]');
 ylabel('Amplitude');
 legend('500 Hz','2200 Hz','4050 Hz');
 xlim([0,0.01]);
 
-max500=max(abs(f500(21:10001))); %max value of the 500 hz filtered sine, after the first period, and before the last
-max2200=max(abs(f2200(21:10001))); %max value of the 2200 hz filtered sine, after the first period, and before the last
-max4050=max(abs(f4050(21:10001))); %max value of the 4050 hz filtered sine, after the first period, and before the last
+max500=max(abs(f500(21:10000))); %max value of the 500 hz filtered sine, after the first period, and before the last
+max2200=max(abs(f2200(21:10000))); %max value of the 2200 hz filtered sine, after the first period, and before the last
+max4050=max(abs(f4050(21:10000))); %max value of the 4050 hz filtered sine, after the first period, and before the last
 
 %% Filtering by filter-command
 h=1/21*ones(1,21); % non-zeropadded impulse respons for the filter
@@ -192,7 +192,7 @@ fnew500=filter(h,1,s500); %the new filtered signal
 figure
 plot(t500,s500,'ro--');
 hold on
-plot(t500,fnew500(1:10001),'go--');
+plot(t500,fnew500(1:10000),'go--');
 grid on
 xlabel('Time [s]');
 ylabel('Amplitude');
