@@ -36,6 +36,10 @@ ylabel('Amplitude')
 %% spectrum 1.2
 [Y,freq]=make_spectrum(s,fs); %frequency spectrum for the signal
 %% spectrum plot 1.2
+Y_nonoise=Y; %The phase of Y jitters around pi and -pi, so we have to
+% cancel the noise, to get a phase plot that makes sense.
+Y_nonoise(abs(Y)<max(abs(Y))/1000)=0; %remove small values of Y
+phaseY=angle(Y_nonoise); % Angle of the noiseless Y
 figure
 subplot(2,1,1)
 hold on;
@@ -47,7 +51,7 @@ ylabel('Amplitude');
 subplot(2,1,2)
 hold on;
 grid on;
-plot(freq,angle(Y),'bo--');
+plot(freq,phaseY,'bo--');
 xlim([0,16*f0+20]);
 xlabel('Frequency [Hz]');
 ylabel('Phase [rad]');
